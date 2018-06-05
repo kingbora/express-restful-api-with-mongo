@@ -2,8 +2,10 @@
 /www/
 .idea
 /nbproject/
+/public
 .DS_Store
 /platforms
 /npm-debug.log
 .bak
 /log
+/.vscode
