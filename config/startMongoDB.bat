@@ -1,0 +1,1 @@
+start mongod --dbpath G:\M_DB
