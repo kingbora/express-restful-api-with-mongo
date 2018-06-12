@@ -19,5 +19,22 @@ module.exports = {
             day = day + "";
         }
         return year + month + day;
+    },
+    isEmpty: (v) => {
+        switch (typeof v) {
+            case "undefined":
+                return true;
+            case "string":
+                return (v.trim().length === 0);
+            case "boolean":
+                return !v;
+            case "number":
+                return 0 === v;
+            case "object":
+                for( let t in v)
+                    return !1;
+                return !0;
+        }
+        return false;
     }
 };

@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./server.js",
-    "start-mongo": "node ./config/run.js"
+    "start": "node ./server.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -13,8 +12,10 @@
     "execa": "^0.10.0",
     "express": "~4.16.0",
     "file-stream-rotator": "^0.2.1",
-    "mongoose": "^5.1.3",
+    "moment": "^2.22.2",
     "morgan": "~1.9.0",
-    "multer": "^1.3.0"
+    "multer": "^1.3.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.10"
   }
 }

@@ -11,7 +11,7 @@ const FileStreamRotator = require("file-stream-rotator");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const path = require("path");
-const api = require("./src/api");
+const tools = require("./config/common");
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -43,7 +43,16 @@ app.use(cookieParser());
 //静态资源
 app.use(express.static("./public"));
 
-app.use("/api", api);
+//动态配置路由
+function bootstrapRoutes() {
+    const appPath = process.cwd();
+
+    tools.walk(appPath + '/src', 'routes', '', function(path) {
+        require(path)(app);
+    });
+}
+
+bootstrapRoutes();
 
 //启动服务
 app.listen(config.port, (err) => {

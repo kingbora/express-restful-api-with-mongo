@@ -40,17 +40,13 @@ const uploadInstance = multer({
     storage: storageSetting
 });
 
-const article = require("./article/controller");
 const upload = require("./upload/controller");
+const article = require("./article/controller");
 
-//文章接口
-router.route("/article")
-    .get(article.getArticle)
-    .post(article.saveArticle)
-    .delete(article.deleteArticle);
+router.post("/article/save", article.save);
 
 //上传
-router.route("/upload").post(uploadInstance.any(), upload.upload);
+router.post("/upload", uploadInstance.any(), upload.upload);
 
 
 module.exports = router;
