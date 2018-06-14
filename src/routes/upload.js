@@ -42,6 +42,16 @@ const uploadInstance = multer({
 });
 
 module.exports = (app) => {
+    /**
+     * @api {post} /api/upload 上传
+     * @apiDescription 获取所有标签
+     * @apiName Upload
+     * @apiGroup Upload
+     * @apiParam {object} file 图片二进制流
+     * @apiSuccess {json} result
+     * @apiSampleRequest http://localhost:8080/api/upload
+     * @apiVersion 1.0.0
+     */
     router.post("/", uploadInstance.any(), upload.upload);
 
     app.use("/api/upload", router);

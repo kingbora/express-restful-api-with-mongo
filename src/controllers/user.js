@@ -11,19 +11,22 @@ const operation = {
             });
     },
     get: (req, res) => {
-        const userName = req.params.userName;
+        const username = req.params.username;
         return userService
-            .findByUserName(userName)
+            .findByUserName(username)
             .then((data) => {
                 if (data) {
                     res.status(200).json(data);
                 } else {
-                    res.status(404).send(codeMsg.USER_NOT_FOUND);
+                    res.status(404).json(codeMsg.NOT_FOUND);
                 }
             })
     },
     create: (req, res) => {
-        const user = req.body;
+        let user = req.body;
+        if (!user.username) {
+            user.username = "";
+        }
         return userService
             .create(user)
             .then((data) => {
@@ -31,10 +34,10 @@ const operation = {
             });
     },
     delete: (req, res) => {
-        const userName = req.params.userName;
+        const username = req.params.username;
         return userService
             .deleteUser({
-                userName: userName
+                username: username
             })
             .then((affectedRows) => {
                 res.status(200).end();

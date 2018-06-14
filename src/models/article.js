@@ -13,11 +13,16 @@ const Article = sequelize.define('tb_article', {
         allowNull: false
     },
     uuid: {
-        type: Sequelize.UUID,
+        type: Sequelize.UUID(22),
         unique: true,
         defaultValue: Sequelize.UUIDV1,
         allowNull: false,
         comment: "文章的外部ID"
+    },
+    author: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        comment: "文章作者ID"
     },
     title: {
         type: Sequelize.STRING(50),

@@ -11,23 +11,23 @@ const validators = {
         let message;
         if (body) {
             if (utils.isEmpty(body.title)) {
-                message = codeMsg.USER_DATA_USERNAME_EMPTY;
+                message = codeMsg.INVALID_PARAM;
             } else {
                 next();
                 return;
             }
         } else {
-            message = codeMsg.USER_DATA_INVALID;
+            message = codeMsg.INVALID_PARAM;
         }
 
-        res.status(400).end(message);
+        res.status(400).json(message);
     },
     uniqueValidator: (req, res, next) => {
         const body = req.body;
         articleService.findByArticleTitle(body.title)
             .then((data) => {
                 if (data) {
-                    res.status(422).end(codeMsg.USER_USERNAME_TAKEN);
+                    res.status(422).json(codeMsg.TITLE_RENAME);
                 } else {
                     next();
                 }

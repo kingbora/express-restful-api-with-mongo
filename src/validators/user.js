@@ -10,23 +10,23 @@ const validators = {
         const body = req.body;
         let message;
         if (body) {
-            if (utils.isEmpty(body.userName)) {
-                message = codeMsg.USER_DATA_USERNAME_EMPTY;
+            if (utils.isEmpty(body.name)) {
+                message = codeMsg.INVALID_PARAM;
             } else {
                 next();
                 return;
             }
         } else {
-            message = codeMsg.USER_DATA_INVALID;
+            message = codeMsg.INVALID_PARAM;
         }
 
-        res.status(400).end(message);
+        res.status(400).json(message);
     },
     uniqueValidator: (req, res, next) => {
-        userService.findByUserName(req.body.userName)
+        userService.findByName(req.body.name)
             .then((data) => {
                 if (data) {
-                    res.status(422).end(codeMsg.USER_USERNAME_TAKEN);
+                    res.status(422).json(codeMsg.USERNAME_RENAME);
                 } else {
                     next();
                 }

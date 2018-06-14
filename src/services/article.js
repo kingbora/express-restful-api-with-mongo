@@ -13,16 +13,32 @@ exports.findAll = ({ limit = 50, offset = 0, ...otherOptions } = {}) => {
     });
 };
 
+exports.findByArticleUUID = (uuid) => {
+    return Article.findOne({
+        where: {
+            uuid: uuid
+        }
+    })
+};
+
 exports.findByArticleTitle = (title) => {
     return Article.find({
         where: {
             title: title
         }
-    })
+    });
 };
 
 exports.create = (article) => {
     return Article.create(article);
+};
+
+exports.update = (article) => {
+    return Article.update(article, {
+        where: {
+            uuid: article.uuid
+        }
+    })
 };
 
 exports.deleteArticle = (article) => {

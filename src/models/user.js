@@ -3,6 +3,7 @@
  */
 const Sequelize = require("sequelize");
 const sequelize = require("../../config/db");
+const util = require("../utils");
 
 const User = sequelize.define('tb_user', {
     id: {
@@ -15,7 +16,16 @@ const User = sequelize.define('tb_user', {
     username: {
         type: Sequelize.STRING(50),
         allowNull: false,
-        unique: true,
+        set(val) {
+            if (!util.isEmpty(val)) {
+                this.setDataValue("username", val);
+            } else {
+                this.setDataValue("username", util.UUID(8));
+            }
+        },
+        get() {
+            return this.getDataValue("username");
+        },
         comment: "用户名"
     },
     password: {

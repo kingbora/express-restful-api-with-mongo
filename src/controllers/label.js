@@ -18,7 +18,7 @@ const operation = {
                 if (data) {
                     res.status(200).json(data);
                 } else {
-                    res.status(404).send(codeMsg.USER_NOT_FOUND);
+                    res.status(404).json(codeMsg.NOT_FOUND);
                 }
             })
     },

@@ -13,10 +13,26 @@ exports.findAll = ({ limit = 50, offset = 0, ...otherOptions } = {}) => {
     });
 };
 
-exports.findByUserName = (userName) => {
+exports.findByUserName = (username) => {
     return User.find({
         where: {
-            name: userName
+            username: username
+        }
+    })
+};
+
+exports.findByName = (name) => {
+    return User.findOne({
+        where: {
+            name: name
+        }
+    })
+};
+
+exports.findByUserId = (id) => {
+    return User.findOne({
+        where: {
+            id: id
         }
     })
 };
