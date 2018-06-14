@@ -4,7 +4,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../../config/db");
 
-const User = sequelize.define('user', {
+const User = sequelize.define('tb_user', {
     id: {
         type: Sequelize.BIGINT,
         primaryKey: true,
@@ -29,10 +29,10 @@ const User = sequelize.define('user', {
         comment: "姓名"
     }
 }, {
+    timestamps: true,
+    paranoid: true,
     underscored: true,
-    timestamps: false,
-    createAt: false,
-    paranoid: true
+    freezeTableName: true
 });
 
 User.sync();
