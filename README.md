@@ -1,1 +1,1 @@
-# express-restful-api-with-mongo
+# express-restful-api-with-mysql
